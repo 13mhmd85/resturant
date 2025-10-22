@@ -1,0 +1,135 @@
+/* ================== VARIABLES ================== */
+:root {
+    --bg-dark: #222831;
+    --bg-secondary: #393E46;
+    --accent: #00ADB5;
+    --text-light: #EEEEEE;
+}
+
+/* ================== BASE ================== */
+body {
+    font-family: 'Exo 2', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: #fff; text-decoration: none; }
+
+/* ================== NAVBAR ================== */
+.navbar { background-color: var(--bg-secondary); padding: 1rem 2rem; }
+.navbar-brand { font-weight: 800; font-size: 2rem; }
+.user-menu { position: relative; cursor: pointer; display:inline-block; }
+.user-menu:hover .dropdown-menu { display: block; }
+.dropdown-menu { background-color: var(--bg-secondary); border: none; right:0; left:auto; }
+.dropdown-item { color: var(--text-light); transition: 0.3s; }
+.dropdown-item:hover { background-color: var(--accent); color: var(--bg-dark); }
+
+/* ================== HERO ================== */
+.hero { text-align:center; padding:3rem 1rem; }
+.hero h1 { font-size:3rem; font-weight:800; margin-bottom:1rem; }
+.hero p { font-size:1.2rem; max-width:700px; margin:0 auto 2rem auto; }
+.hero img { width:120px; margin-bottom:1rem; cursor:pointer; }
+
+/* ================== FOOD CARDS ================== */
+.food-card {
+    background-color: var(--bg-secondary);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+.food-card:hover { transform: scale(1.05); box-shadow:0 0 20px var(--accent);}
+.food-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    background-color: var(--bg-secondary);
+    padding: 15px;
+}
+.food-card-body { padding:1rem; flex-grow:1; }
+.food-card-body h5 { font-size:1.6rem; font-weight:700; }
+.food-card-body p { font-size:1rem; margin:0.5rem 0; }
+.food-card-body .price { font-weight:700; color:var(--accent); font-size:1.2rem; }
+
+/* ================== FORMS ================== */
+.card-reservation, .card-auth, .reservation-section {
+    background: linear-gradient(145deg, #393E46, #222831);
+    border-radius: 25px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card-reservation:hover, .card-auth:hover, .reservation-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 173, 181, 0.5);
+}
+.card-reservation h2, .card-auth h2, .reservation-section h2 {
+    text-align: center;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+}
+.reservation-section label, .card-auth label {
+    color: var(--text-light);
+    font-weight: 600;
+}
+.reservation-section input,
+.reservation-section select,
+.card-auth input,
+.card-auth select {
+    background-color:#222831;
+    color: var(--text-light);
+    border:1px solid var(--accent);
+    border-radius:8px;
+    transition: 0.3s;
+}
+.reservation-section button,
+.card-auth button {
+    background-color: var(--accent);
+    border:none;
+    padding:0.7rem 1.5rem;
+    font-weight:700;
+    transition:0.3s;
+    cursor:pointer;
+}
+.reservation-section button:hover,
+.card-auth button:hover {
+    background-color:#EEEEEE;
+    color: var(--bg-dark);
+    transform: scale(1.05);
+}
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 10px var(--accent);
+    border-color: var(--accent);
+    outline: none;
+}
+
+/* ================== FOOTER ================== */
+footer {
+    background-color: var(--bg-secondary);
+    padding:3rem 1rem;
+    text-align:center;
+    border-top: 3px solid var(--accent);
+}
+footer p { margin:0.5rem 0; }
+.footer-social a {
+    display:inline-block;
+    margin:0 10px;
+    font-size:1.5rem;
+    color: var(--text-light);
+    transition:0.3s;
+}
+.footer-social a:hover { color: var(--accent); }
+
+/* ================== RESPONSIVE ================== */
+@media(max-width:768px){
+    .food-card img { height:200px; }
+    .hero h1 { font-size:2rem; }
+}

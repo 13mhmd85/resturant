@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ثبت نام در فودلند 🍔</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+:root {
+    --bg-dark: #222831;
+    --bg-secondary: #393E46;
+    --accent: #00ADB5;
+    --text-light: #EEEEEE;
+}
+body {
+    font-family: 'Exo 2', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: #fff; text-decoration: none; }
+.reservation-section {
+    background-color: var(--bg-secondary);
+    padding:3rem 1rem;
+    border-radius:15px;
+    margin-top:3rem;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+}
+.reservation-section h2 { font-weight:800; margin-bottom:2rem; text-align:center; color: var(--accent);}
+.reservation-section label { color: var(--text-light); font-weight:600; }
+.reservation-section input,
+.reservation-section select {
+    background-color: var(--bg-dark); color: var(--text-light); border:1px solid var(--accent); border-radius:8px;
+}
+.reservation-section input:focus,
+.reservation-section select:focus {
+    box-shadow: 0 0 10px var(--accent);
+    border-color: var(--accent);
+    outline: none;
+}
+.reservation-section button {
+    background-color: var(--accent); border:none; padding:0.7rem 1.5rem; font-weight:700; transition:0.3s; border-radius:15px;
+}
+.reservation-section button:hover { background-color:#EEEEEE; color: var(--bg-dark); transform: scale(1.05);}
+</style>
+</head>
+<body>
+
+<section class="container my-5">
+  <div class="card p-4 shadow-lg border-0 reservation-section">
+    <h2 class="text-center mb-4">ثبت نام در فودلند 🍔</h2>
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="fullname" class="form-label fw-bold">نام و نام خانوادگی</label>
+        <div class="input-group">
+          <span class="input-group-text">👤</span>
+          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="مثلاً محمد میاحی">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label fw-bold">ایمیل</label>
+        <div class="input-group">
+          <span class="input-group-text">✉️</span>
+          <input type="email" class="form-control" id="email" name="email" placeholder="مثلاً demo@gmail.com">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="username" class="form-label fw-bold">نام کاربری</label>
+        <div class="input-group">
+          <span class="input-group-text">👤</span>
+          <input type="text" class="form-control" id="username" name="username" placeholder="نام کاربری دلخواه">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label fw-bold">رمز عبور</label>
+        <div class="input-group">
+          <span class="input-group-text">🔒</span>
+          <input type="password" class="form-control" id="password" name="password" placeholder="رمز عبور دلخواه">
+        </div>
+      </div>
+
+      <button type="submit" class="btn w-100 fw-bold mt-3">ثبت نام ✅</button>
+      <p class="mt-3 text-center">حساب کاربری دارید؟ <a href="{% url 'login' %}">وارد شوید</a></p>
+    </form>
+  </div>
+</section>
+
+</body>
+</html>
