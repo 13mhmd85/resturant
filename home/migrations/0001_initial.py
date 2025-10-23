@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('price', models.FloatField()),
-                ('image', models.ImageField(upload_to='images/')),
+                ('image', models.ImageField(upload_to='media/')),
             ],
         ),
         migrations.CreateModel(

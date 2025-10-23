@@ -123,45 +123,28 @@ footer p { margin:0.5rem 0; }
 
 <!-- HERO -->
 <section class="hero">
-    <img src="{% static 'assets/images/avatar.png' %}" alt="FoodLand">
+    <img src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
     <h1>🍔🍕🥤به فودلند خوش آمدید </h1>
     <p>لذت واقعی غذاهای خوشمزه با کیفیت بالا. سفارش آنلاین، رزرو میز و تجربه‌ای متفاوت از رستوران‌گردی را با فودلند تجربه کنید.</p>
 </section>
 
 <!-- FOOD CARDS -->
 <section class="container my-5">
-    <div class="row g-4">
+       <div class="row g-4">
+    {% for product in products %}
         <div class="col-md-4">
             <div class="food-card">
-                <img src="{% static 'assets/images/burger.png' %}" alt="Burger">
+                <img   {% if product.id == 1 %} style="transform: rotate(15deg);" {% endif %} src="{{ product.image.url }}" alt="{{ product.name }}">
                 <div class="food-card-body">
-                    <h5>برگر خوشمزه 🍔</h5>
-                    <p>یک برگر عالی با گوشت تازه، پنیر و سبزیجات</p>
-                    <div class="price">$12</div>
+                    <h5>{{ product.name }}</h5>
+                    <h6 style="text-align: center">{{ product.description }}</h6>
+                    <div class="price">{{ product.price }} تومان</div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="food-card">
-                <img src="{% static 'assets/images/pizza.png' %}" alt="Pizza">
-                <div class="food-card-body">
-                    <h5>پیتزا مخصوص 🍕</h5>
-                    <p>پیتزای داغ و خوشمزه با ترکیب پنیر و مواد تازه</p>
-                    <div class="price">$15</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="food-card">
-                <img src="{% static 'assets/images/drink.png' %}" alt="Drink">
-                <div class="food-card-body">
-                    <h5>نوشیدنی خنک 🥤</h5>
-                    <p>نوشیدنی‌های تازه و طبیعی برای رفع تشنگی</p>
-                    <div class="price">$5</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
+</div>
+
 </section>
 
 <!-- RESERVATION FORM -->
@@ -259,12 +242,23 @@ footer p { margin:0.5rem 0; }
 <footer>
     <p>Backend Dev: Mohammad Mayyahi 👨‍💻</p>
     <div class="footer-social my-2">
-        <a href="#"><i class="fa fa-whatsapp"></i></a>
-        <a href="#"><i class="fa fa-telegram"></i></a>
-        <a href="#"><i class="fa fa-instagram"></i></a>
-        <a href="#"><i class="fa fa-envelope"></i></a>
+        {% for footer in footer %}
+        	
+        <a href="{{ footer.whatsapp }}"><i class="fa fa-whatsapp">whatsapp</i></a>
+        <a href="{{footer.telegram}}"><i class="fa fa-telegram">telegram</i></a>
+        <a href="{{footer.instagram}}"><i class="fa fa-instagram">instagram</i></a>
+        {% endfor %}
+
+
     </div>
-    <p>آدرس: تهران، ایران | تلفن: 09123456789 | ایمیل: demo@gmail.com</p>
+    <div class="footer-social my-2">
+        {% for footer in footer %}
+        <p> {{ footer.email }} : ایمیل ما</p>
+        <p>آدرس ما: {{ footer.address }}</p>
+        <p>شماره تماس: {{ footer.phone }}</p>
+        {% endfor %}
+    </div>
+
     <p>&copy; 2025 FoodLand</p>
 </footer>
 
