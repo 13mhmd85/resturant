@@ -7,47 +7,27 @@
 <title>ورود به فودلند 🍔</title>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-:root {
-    --bg-dark: #222831;
-    --bg-secondary: #393E46;
-    --accent: #00ADB5;
-    --text-light: #EEEEEE;
-}
-body {
-    font-family: 'Exo 2', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-}
-a { color: var(--accent); text-decoration: none; }
-a:hover { color: #fff; text-decoration: none; }
-.reservation-section {
-    background-color: var(--bg-secondary);
-    padding:3rem 1rem;
-    border-radius:15px;
-    margin-top:3rem;
-    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
-}
-.reservation-section h2 { font-weight:800; margin-bottom:2rem; text-align:center; color: var(--accent);}
-.reservation-section label { color: var(--text-light); font-weight:600; }
-.reservation-section input,
-.reservation-section select {
-    background-color: var(--bg-dark); color: var(--text-light); border:1px solid var(--accent); border-radius:8px;
-}
-.reservation-section input:focus,
-.reservation-section select:focus {
-    box-shadow: 0 0 10px var(--accent);
-    border-color: var(--accent);
-    outline: none;
-}
-.reservation-section button {
-    background-color: var(--accent); border:none; padding:0.7rem 1.5rem; font-weight:700; transition:0.3s; border-radius:15px;
-}
-.reservation-section button:hover { background-color:#EEEEEE; color: var(--bg-dark); transform: scale(1.05);}
-</style>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
 </head>
 <body>
-<h1 class="text-center mb-4">{{ error }}</h1>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="{% url 'home' %}">FoodLand 🍔</a>
+
+
+
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="card_icon" style="border-color: #393E46;border-style: dotted">
+    <a href="{% url 'home' %}">
+    <img href="{% url 'home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
+    <h5>FoodLand 🍔</h5>
+    </a>
+</div>
+
+<h1  class="text-center mb-4">{{ error }}</h1>
 <section class="container my-5">
   <div class="card p-4 shadow-lg border-0 reservation-section">
     <h2 class="text-center mb-4">ورود به فودلند 🍔</h2>

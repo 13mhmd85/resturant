@@ -18,7 +18,11 @@ def register(request):
 
     return render(request, 'account/register.html')
 def login_view(request):
+    if request.user.is_authenticated:
+        print("logged in")
+        return redirect('/')
     if request.method == 'POST':
+        
 
         username = request.POST.get('username')
         password = request.POST.get('password')
