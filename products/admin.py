@@ -1,5 +1,4 @@
 from django.contrib import admin
-from . import models
+from .models import Food
 # Register your models here.
-
-admin.site.register(models.Footer)
+admin.site.register(Food)

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'reservation.apps.ReservationConfig',
     'django_cleanup.apps.CleanupConfig',
+    'products.apps.ProductsConfig',
 ]
 
 MIDDLEWARE = [
