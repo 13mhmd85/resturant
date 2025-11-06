@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <style>
         a {
-        color: inherit; /* رنگش رو از عنصر والد میگیره */
-        text-decoration: none; /* خط زیر رو حذف می‌کنه */
+            color: inherit; /* رنگش رو از عنصر والد میگیره */
+            text-decoration: none; /* خط زیر رو حذف می‌کنه */
         }
 
-    a:hover {
-        color: inherit; /* هنگام هاور هم رنگ تغییر نکنه */
-        text-decoration: none;
-    }
+        a:hover {
+            color: inherit; /* هنگام هاور هم رنگ تغییر نکنه */
+            text-decoration: none;
+        }
 
     </style>
 </head>
@@ -28,32 +28,41 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="{% url 'home' %}">FoodLand 🍔</a>
-        {% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated %}
 
-                <div id="user-info" class="ms-auto user-menu">
-                    <img style="width: 55px;height: auto" alt="login icon" src="{% static 'assets/images/icon human.png' %}">
-                    <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
-                        <ul class="dropdown-menu dropdown-menu-end text-center bg-dark">
-                            <li><a class="dropdown-item text-light" href="{% url '#' %}">صفحه شخصی</a></li>
-                            <li><a class="dropdown-item text-light" href="{% url '#' %}">خروج از حساب</a></li>
-                        </ul>
-                </div>
+        <div id="user-info" class="ms-auto user-menu">
+            <img style="width: 55px;height: auto" alt="login icon" src="{% static 'assets/images/icon human.png' %}">
+            <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
+            <div class="dropdown">
 
-        {% else %}
+                <ul style="background-color: #222831;margin-top: 24px" class=" dropdown-menu "
+                    aria-labelledby="dropdownMenu2">
+                    <li>
+                        <a href="{% url 'userpage' %}" ><button class="dropdown-item" type="button">صفحه شخصی</button></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}"><button class="dropdown-item"  type="button">خروج از حساب</button></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    {% else %}
         <div class="ms-auto user-menu">
-        <img style="width: 55px;height: auto" alt="login icon" src="{% static 'assets/images/login.png' %}">
-        <ul class="dropdown-menu position-absolute">
-            <li><a class="dropdown-item" href="{% url 'register' %}">ثبت نام</a></li>
-            <li><a class="dropdown-item" href="{% url 'login' %}">ورود</a></li>
-        </ul>
+            <img style="width: 55px;height: auto" alt="login icon" src="{% static 'assets/images/login.png' %}">
+            <ul class="dropdown-menu position-absolute">
+                <li><a class="dropdown-item" href="{% url 'register' %}">ثبت نام</a></li>
+                <li><a class="dropdown-item" href="{% url 'login' %}">ورود</a></li>
+            </ul>
 
         </div>
-        {% endif %}
+    {% endif %}
 </nav>
 <div class="hero" id="card_icon" style="border-color: #393E46;border-style: dotted">
     <a href="{% url 'home' %}">
-    <img href="{% url 'home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
-    <h5>FoodLand 🍔</h5>
+        <img href="{% url 'home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
+        <h5>FoodLand 🍔</h5>
     </a>
 
 

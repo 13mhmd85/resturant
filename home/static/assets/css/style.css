@@ -325,4 +325,8 @@ footer p {
   font-weight: 600;
 }
 
+#bg-dropdown{
+    background-color: var(--accent);
+
+}
 

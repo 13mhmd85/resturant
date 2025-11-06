@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صفحه شخصی | FoodLand 🍔</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Style -->
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+</head>
+
+<body>
+<!-- ======= NAVBAR ======= -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" href="{% url 'home' %}">FoodLand 🍔</a>
+
+  <div class="ms-auto user-menu">
+    {% if request.user.is_authenticated %}
+    <div id="user-info">
+      <img src="{% static 'assets/images/icon human.png' %}" alt="User Icon">
+      <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
+
+      <div class="dropdown">
+        <ul style="background-color:#222831;margin-top:24px" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li><a href="{% url 'home' %}" class="dropdown-item">خانه</a></li>
+          <li><a href="{% url 'logout' %}" class="dropdown-item">خروج از حساب</a></li>
+        </ul>
+      </div>
+    </div>
+    {% else %}
+    <a href="{% url 'login' %}">
+      <img src="{% static 'assets/images/login.png' %}" alt="Login">
+    </a>
+    {% endif %}
+  </div>
+</nav>
+
+<!-- ======= HERO ======= -->
+<section class="hero">
+  <img src="{% static 'assets/images/icon.png' %}" alt="FoodLand Logo" style="width:100px;">
+  <h1> {{ request.user.first_name }}👋!</h1>
+  <p>به صفحه شخصی خودت خوش اومدی. اینجا می‌تونی اطلاعات حساب، سفارش‌ها و تنظیماتت رو ببینی.</p>
+</section>
+
+<!-- ======= USER DETAIL SECTION ======= -->
+<section class="detail-section text-center">
+  <img src="{% static 'assets/images/icon human.png' %}" alt="User Avatar" style="width:150px;">
+  <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
+  <p><strong>نام کاربری:</strong> {{ request.user.username }}</p>
+  <p><strong>ایمیل:</strong> {{ request.user.email }}</p>
+  <p><strong>تاریخ عضویت:</strong> {{ request.user.date_joined|date:"Y/m/d" }}</p>
+
+  <div class="mt-4">
+    <a href="#" class="add-to-cart-btn">ویرایش اطلاعات</a>
+  </div>
+</section>
+
+<!-- ======= USER ACTION CARDS ======= -->
+<div class="container my-5 text-center">
+  <h2 class="mb-4" style="color: var(--accent); font-weight:800;">دسترسی سریع ⚡</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <div style="height: 130px;width: auto" id="card_icon">
+        <img src="{% static 'assets/images/order.png' %}" alt="Orders">
+        <h5>سفارش‌های من</h5>
+      </div>
+    </div>
+    <div  class="col-md-3">
+        <a href="{% url 'logout' %}">
+      <div style="height: 130px;width: auto" id="card_icon">
+        <img src="{% static 'assets/images/logout.png' %}" alt="Logout">
+        <h5>خروج از حساب</h5></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======= FOOTER ======= -->
+<footer>
+    <p>Backend Dev: Mohammad Mayyahi 👨‍💻</p>
+    <div class="footer-social my-2">
+        {% for footer in footer %}
+
+        <a href="{{ footer.whatsapp }}"><i class="fa fa-whatsapp">whatsapp</i></a>
+        <a href="{{footer.telegram}}"><i class="fa fa-telegram">telegram</i></a>
+        <a href="{{footer.instagram}}"><i class="fa fa-instagram">instagram</i></a>
+        {% endfor %}
+
+
+    </div>
+    <div class="footer-social my-2">
+        {% for footer in footer %}
+        <p> {{ footer.email }} : ایمیل ما</p>
+        <p>آدرس ما: {{ footer.address }}</p>
+        <p>شماره تماس: {{ footer.phone }}</p>
+        {% endfor %}
+    </div>
+
+    <p>&copy; 2025 FoodLand</p>
+</footer>
+
+<!-- ======= JS ======= -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

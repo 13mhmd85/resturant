@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رزرو میز | FoodLand 🍽️</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Persian Datepicker -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css">
+
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+</head>
+<body style="background-color: #222831; color: #EEEEEE;">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #393E46;">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="{% url 'home:home' %}">🍔 FoodLand</a>
+    </div>
+</nav>
+
+<!-- RESERVATION FORM -->
+<section class="container my-5">
+    <div class="card p-4 shadow-lg border-0"
+         style="background: linear-gradient(145deg, #393E46, #222831); border-radius: 25px;">
+        <h2 class="text-center mb-4" style="font-weight: 800; font-size: 2.5rem; color: #00ADB5;">رزرو میز 🍽️</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row g-4">
+                <!-- Name -->
+                <div class="col-md-6">
+                    <label for="name" class="form-label fw-bold text-light">نام و نام خانوادگی</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-gradient text-light" style="background: #00ADB5;">👤</span>
+                        <input name="full_name" type="text"
+                               class="form-control bg-dark text-light border-0 rounded-end px-3" id="name"
+                               placeholder="مثلاً محمد میاحی">
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="col-md-6">
+                    <label for="phone" class="form-label fw-bold text-light">شماره تماس</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-gradient text-light"  style="background: #00ADB5;">📞</span>
+                        <input maxlength="11" name="phone_number" type="text"
+                               class="form-control bg-dark text-light border-0 rounded-end px-3" id="phone"
+                               placeholder="مثلاً 09123456789">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label for="email" class="form-label fw-bold text-light">ایمیل</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-gradient text-light" style="background: #00ADB5;">✉️</span>
+                        <input name="email" type="email"
+                               class="form-control bg-dark text-light border-0 rounded-end px-3" id="email"
+                               placeholder="مثلاً demo@gmail.com">
+                    </div>
+                </div>
+
+                <!-- Persons -->
+                <div class="col-md-6">
+                    <label for="persons" class="form-label fw-bold text-light">تعداد افراد</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-gradient text-light" style="background: #00ADB5;">👥</span>
+                        <select name="tedad" class="form-select bg-dark text-light border-0 rounded-end px-3"
+                                id="persons">
+                            <option selected>انتخاب کنید</option>
+                            <option value="2">2 نفر</option>
+                            <option value="3">3 نفر</option>
+                            <option value="4">4 نفر</option>
+                            <option value="5">5 نفر</option>
+                        </select>
+                    </div>
+                </div>
+
+{#                <!-- Date -->#}
+{#                <div class="col-md-6">#}
+{#                    <label for="date" class="form-label fw-bold text-light">تاریخ</label>#}
+{#                    <div class="input-group">#}
+{#                        <span class="input-group-text bg-gradient text-light" style="background: #00ADB5;">📅</span>#}
+{#                        <!-- input برای نمایش تاریخ فارسی -->#}
+{#                        <input type="text" id="date_fa"#}
+{#                               class="form-control bg-dark text-light border-0 rounded-end px-3"#}
+{#                               placeholder="انتخاب تاریخ">#}
+{##}
+{#                        <!-- input مخفی برای ارسال تاریخ میلادی -->#}
+{#                        <input type="hidden" name="date" id="date_en">#}
+{#                    </div>#}
+{#                </div>#}
+
+                <!-- Submit -->
+                <div class="col-md-6 d-flex align-items-end">
+                    <button type="submit" class="btn w-100 fw-bold"
+                            style="background: #00ADB5; color: #222831; font-size: 1.1rem; border-radius: 15px;">
+                        رزرو کنید ✅
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center py-4" style="background-color: #393E46;">
+    <p>&copy; 2025 FoodLand 🍔</p>
+</footer>
+
+<!-- JS -->
+
+
+<script>
+$(document).ready(function () {
+    $("#date_fa").persianDatepicker({
+        format: 'YYYY/MM/DD',
+        autoClose: true,
+        initialValue: false,
+        onSelect: function (unix) {
+            // تبدیل به تاریخ میلادی
+            let gregorian = new persianDate(unix).toGregorian();
+            let enDate = gregorian.year + "-" +
+                String(gregorian.month).padStart(2, '0') + "-" +
+                String(gregorian.day).padStart(2, '0');
+            // قرار دادن مقدار در input مخفی
+            $("#date_en").val(enDate);
+        }
+    });
+
+    // قبل از ارسال فرم، اعداد فارسی در input مخفی هم به انگلیسی تبدیل شوند
+    $("form").on("submit", function () {
+        let hiddenDate = $("#date_en").val();
+        if(hiddenDate) {
+            const persianNumbers = ["۰","۱","۲","۳","۴","۵","۶","۷","۸","۹"];
+            const englishNumbers = ["0","1","2","3","4","5","6","7","8","9"];
+            for(let i=0; i<persianNumbers.length; i++){
+                hiddenDate = hiddenDate.replaceAll(persianNumbers[i], englishNumbers[i]);
+            }
+            $("#date_en").val(hiddenDate);
+        }
+    });
+});
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@
 <body>
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="{% url 'home' %}">FoodLand 🍔</a>
+    <a class="navbar-brand" href="{% url 'home:home' %}">FoodLand 🍔</a>
 
 
 
@@ -21,14 +21,14 @@
 
 <!-- HERO -->
 <div class="hero" id="card_icon" style="border-color: #393E46;border-style: dotted">
-    <a href="{% url 'home' %}">
-    <img href="{% url 'home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
-    <h5>FoodLand 🍔</h5>
+    <a href="{% url 'home:home' %}">
+    <img href="{% url 'home:home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
+    <h5>FoodLand</h5>
     </a>
 </div>
 
 <h1  class="text-center mb-4">{{ error }}</h1>
-<section class="container my-5">
+<section style="width:600px"   class="container my-5">
   <div class="card p-4 shadow-lg border-0 reservation-section">
     <h2 class="text-center mb-4">ورود به فودلند 🍔</h2>
     <form method="POST" action="">
@@ -50,7 +50,7 @@
       </div>
 
       <button type="submit" class="btn w-100 fw-bold mt-3">ورود ✅</button>
-      <p class="mt-3 text-center">حساب کاربری ندارید؟ <a href="{% url 'register' %}">ثبت نام کنید</a></p>
+      <p class="mt-3 text-center">حساب کاربری ندارید؟ <a href="{% url 'account:register' %}">ثبت نام کنید</a></p>
     </form>
   </div>
 </section>

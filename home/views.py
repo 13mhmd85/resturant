@@ -8,7 +8,7 @@ def home(request):
     return render(request,'home/index.html',context={'products':products,'footer':footer})
 
 
-def detail(request,id):
+def productdetail(request,id):
     products = get_object_or_404(models.Food, productid=id)
     print(products)
 
