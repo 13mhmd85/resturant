@@ -19,7 +19,7 @@
 <body>
 <!-- ======= NAVBAR ======= -->
 <nav class="navbar navbar-expand-lg navbar-dark">
-  <a class="navbar-brand" href="{% url 'home' %}">FoodLand 🍔</a>
+  <a class="navbar-brand" href="{% url 'home:home' %}">FoodLand 🍔</a>
 
   <div class="ms-auto user-menu">
     {% if request.user.is_authenticated %}
@@ -29,13 +29,13 @@
 
       <div class="dropdown">
         <ul style="background-color:#222831;margin-top:24px" class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <li><a href="{% url 'home' %}" class="dropdown-item">خانه</a></li>
-          <li><a href="{% url 'logout' %}" class="dropdown-item">خروج از حساب</a></li>
+          <li><a href="{% url 'home:home' %}" class="dropdown-item">خانه</a></li>
+          <li><a href="{% url 'account:logout' %}" class="dropdown-item">خروج از حساب</a></li>
         </ul>
       </div>
     </div>
     {% else %}
-    <a href="{% url 'login' %}">
+    <a href="{% url 'account:login' %}">
       <img src="{% static 'assets/images/login.png' %}" alt="Login">
     </a>
     {% endif %}
@@ -58,7 +58,7 @@
   <p><strong>تاریخ عضویت:</strong> {{ request.user.date_joined|date:"Y/m/d" }}</p>
 
   <div class="mt-4">
-    <a href="#" class="add-to-cart-btn">ویرایش اطلاعات</a>
+    <a href="{% url 'account:edit' %}" class="add-to-cart-btn">ویرایش اطلاعات</a>
   </div>
 </section>
 
@@ -73,7 +73,7 @@
       </div>
     </div>
     <div  class="col-md-3">
-        <a href="{% url 'logout' %}">
+        <a href="{% url 'account:logout' %}">
       <div style="height: 130px;width: auto" id="card_icon">
         <img src="{% static 'assets/images/logout.png' %}" alt="Logout">
         <h5>خروج از حساب</h5></a>

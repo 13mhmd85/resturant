@@ -10,8 +10,8 @@ class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
-    phone = models.IntegerField(max_length=11)
-    tedad = models.IntegerField(max_length=1)
+    phone = models.IntegerField()
+    tedad = models.IntegerField()
     created=models.DateTimeField(auto_now_add=True,blank=True,null=True)
     date = jmodels.jDateField(null=True ,blank=True)
     

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="hero" id="card_icon" style="border-color: #393E46;border-style: dotted">
+    <a href="{% url 'home:home' %}">
+        <img href="{% url 'home:home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
+        <h5>FoodLand 🍔</h5>
+    </a>
+
+
+</div>
+
+
+<!-- DETAIL SECTION -->
+<section class="detail-section">
+
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <div class="price">{{ product.price }} تومان</div>
+    <button class="add-to-cart-btn">اضافه کردن به سبد خرید 🛒</button>
+
+</section>
+
+{% endblock %}

@@ -53,6 +53,20 @@ def register(request):
 
     return render(request, 'account/register.html')
 
+def edit(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            user = request.user
+            user.first_name = request.POST.get('first_name')or ''
+            user.last_name = request.POST.get('last_name')or ''
+            user.email = request.POST.get('email')
+            user.save()
+            return redirect('account:user_page') 
+
+        return render(request, 'account/edit_profile.html')
+    else:
+        return redirect('account:login')
+
 
 
 
