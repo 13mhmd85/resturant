@@ -1,76 +1,16 @@
 {% load static %}
+{% load render_partial %}
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FoodLand 🍔🍕🥤</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- PersianDate -->
-<script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
-
-<!-- PersianDatepicker -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css">
-<script src="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
-
-<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-
-        <style>
-        a {
-        color: inherit; /* رنگش رو از عنصر والد میگیره */
-        text-decoration: none; /* خط زیر رو حذف می‌کنه */
-        }
-
-        a:hover {
-            color: inherit; /* هنگام هاور هم رنگ تغییر نکنه */
-            text-decoration: none;
-        }
-
-    </style>
+{% include 'includes/header_link.html' %}
 </head>
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="{% url 'home:home' %}">FoodLand 🍔</a>
-
-    <div class="ms-auto user-menu">
-        {% if request.user.is_authenticated %}
-
-            <div id="user-info" >
-            <img style="width: 55px;height: auto" alt="login icon" src="{% static 'assets/images/icon human.png' %}">
-            <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
-            <div class="dropdown">
-
-                <ul style="background-color: #222831;margin-top: 24px" class=" dropdown-menu "
-                    aria-labelledby="dropdownMenu2">
-                    <li>
-                        <a href="{% url 'account:user_page' %}">  <button class="dropdown-item" type="button">صفحه شخصی</button></a>
-                    </li>
-                    <li>
-                        <a href="{% url 'account:logout' %}"><button class="dropdown-item"  type="button">خروج از حساب</button></a>
-                    </li>
-
-                </ul>
-            </div>
-            </div>
-
-        {% else %}
-
-        <img style="width: 55px;height: auto" alt="login icon" src="{% static 'assets/images/login.png' %}">
-        <ul class="dropdown-menu position-absolute">
-            <li><a class="dropdown-item" href="{% url 'account:register' %}">ثبت نام</a></li>
-            <li><a class="dropdown-item" href="{% url 'account:login' %}">ورود</a></li>
-        </ul>
-
-        {% endif %}
-    </div>
+    {% render_partial 'home:navbar' %}
+{#    {% include 'includes/navbar.html' %}#}
 </nav>
 
 
@@ -93,42 +33,60 @@
 
 
 <!-- FOOTER -->
-<footer>
-    <p>Backend Dev: Mohammad Mayyahi 👨‍💻</p>
-    <div class="footer-social my-2">
+{#<footer>#}
+{#    <p>Backend Dev: Mohammad Mayyahi 👨‍💻</p>#}
+{#    <div class="footer-social my-2">#}
+{#        {% for footer in footer %}#}
+{##}
+{#        <a href="{{ footer.whatsapp }}"><i class="fa fa-whatsapp">whatsapp</i></a>#}
+{#        <a href="{{footer.telegram}}"><i class="fa fa-telegram">telegram</i></a>#}
+{#        <a href="{{footer.instagram}}"><i class="fa fa-instagram">instagram</i></a>#}
+{#        {% endfor %}#}
+{##}
+{##}
+{#    </div>#}
+{#    <div class="footer-social my-2">#}
+{#        {% for footer in footer %}#}
+{#        <p> {{ footer.email }} : ایمیل ما</p>#}
+{#        <p>آدرس ما: {{ footer.address }}</p>#}
+{#        <p>شماره تماس: {{ footer.phone }}</p>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{##}
+{#    <p>&copy; 2025 FoodLand</p>#}
+{#</footer>#}
+
+<footer class="footer">
+    <p class="footer-dev">Backend Dev: Mohammad Mayyahi 👨‍💻</p>
+
+    <!-- Social Links -->
+    <div  class="footer-social">
         {% for footer in footer %}
-
-        <a href="{{ footer.whatsapp }}"><i class="fa fa-whatsapp">whatsapp</i></a>
-        <a href="{{footer.telegram}}"><i class="fa fa-telegram">telegram</i></a>
-        <a href="{{footer.instagram}}"><i class="fa fa-instagram">instagram</i></a>
+        <a href="{{ footer.whatsapp }}" target="_blank" class="social-link">
+            <i class="fa fa-whatsapp me-1"></i>WhatsApp
+        </a>
+        <a href="{{ footer.telegram }}" target="_blank" class="social-link">
+            <i class="fa fa-telegram me-1"></i>Telegram
+        </a>
+        <a href="{{ footer.instagram }}" target="_blank" class="social-link">
+            <i class="fa fa-instagram me-1"></i>Instagram
+        </a>
         {% endfor %}
-
-
     </div>
-    <div class="footer-social my-2">
+
+    <!-- Contact Info -->
+    <div style="color: var(--text-light);" class="footer-contact">
         {% for footer in footer %}
-        <p> {{ footer.email }} : ایمیل ما</p>
-        <p>آدرس ما: {{ footer.address }}</p>
-        <p>شماره تماس: {{ footer.phone }}</p>
+        <p>Email: {{ footer.email }}</p>
+        <p>Address: {{ footer.address }}</p>
+        <p>Phone: {{ footer.phone }}</p>
         {% endfor %}
     </div>
 
-    <p>&copy; 2025 FoodLand</p>
+    <p class="footer-copy">&copy; 2025 FoodLand</p>
 </footer>
 
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/persian-date@1.0.6/dist/persian-date.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
-<script>
-$(document).ready(function() {
-    $("#date").persianDatepicker({
-        format: 'YYYY/MM/DD',
-        autoClose: true,
-        initialValue: false,
-    });
-});
+{% include 'includes/footer_link.html' %}
 </script>
 
 </body>

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'reservation.apps.ReservationConfig',
     'django_cleanup.apps.CleanupConfig',
     'products.apps.ProductsConfig',
+    #my package
+    'django_render_partial'
 ]
 
 MIDDLEWARE = [
@@ -66,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'context_processors.context_processors',
             ],
         },
     },

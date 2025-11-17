@@ -1,18 +1,31 @@
 /* 🎨 رنگ‌ها و متغیرها */
+/*:root {*/
+/*  --bg-dark: #222831;*/
+/*  --bg-secondary: #393E46;*/
+/*  --accent: #00ADB5;*/
+/*  --text-light: #000000;*/
+/*}*/
 :root {
-  --bg-dark: #222831;
-  --bg-secondary: #393E46;
-  --accent: #00ADB5;
-  --text-light: #EEEEEE;
+  --bg-dark: #1B2A3A;        /* پایه تیره‌تر و جدی‌تر */
+  --bg-secondary: #3A5366;   /* لایه دوم تیره‌تر برای عمق بیشتر */
+  --accent: #D8E9F0;
+    --accent-hover:#660B05;/* رنگ برجسته تیره‌تر ولی هنوز مشخص */
+  --text-light: #C4D4DD;     /* متن روشن و نرم برای خوانایی */
 }
+
 
 /* 🌍 بدنه و فونت کلی */
 body {
-  font-family: 'Exo 2', sans-serif;
-  background-color: var(--bg-dark);
-  color: var(--text-light);
+    font-family: 'Vazir', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
 }
+#info-user{
+    color: var(--text-light);
+    margin-top: 24px;
+    background-color: var(--bg-dark);
 
+}
 /* 🌐 لینک‌ها */
 a {
   color: var(--accent);
@@ -266,7 +279,7 @@ footer p {
   transition: 0.3s;
 }
 .footer-social a:hover {
-  color: var(--accent);
+  color: var(--accent-hover);
 }
 
 /* ======= RESPONSIVE ======= */
@@ -303,8 +316,8 @@ footer p {
   align-items: center;        /* وسط‌چین عمودی */
   gap: 10px;                  /* فاصله بین عکس و اسم */
   padding: 5px 12px;          /* فاصله داخلی */
-  background-color: #222831;  /* رنگ پس‌زمینه */
 
+    background-color: var(--bg-dark);
   border-radius: 50px;        /* گوشه‌های گرد */
 
 }
@@ -313,15 +326,16 @@ footer p {
   width: 50px;
   height: 50px;
   border-radius: 50%;         /* عکس دایره‌ای */
-  object-fit: cover;          /* عکس داخل دایره کاملاً جای می‌گیره */
+  object-fit: cover;
+    /* عکس داخل دایره کاملاً جای می‌گیره */
 
 }
 
 #user-info h1 {
   font-size: 16px;            /* کوچیک‌تر از حالت پیش‌فرض */
   margin: 0;
-  color: #fff;                /* رنگ نوشته */
-  font-family: 'Exo 2', sans-serif;
+  color: var(--text-light);                /* رنگ نوشته */
+  font-family: 'Vazir', sans-serif;
   font-weight: 600;
 }
 
@@ -329,4 +343,23 @@ footer p {
     background-color: var(--accent);
 
 }
+.back-btn {
+    display: inline-block;
+    position: absolute; /* برای قرار گرفتن دقیق */
+    top: 10px;          /* فاصله از بالای فرم */
+    left: 10px;         /* فاصله از چپ فرم */
+    width: 32px;        /* اندازه آیکون */
+    height: 32px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.back-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+
 

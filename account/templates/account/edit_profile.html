@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
+    {% include 'includes/header_link.html' %}
     <meta charset="UTF-8">
     <title>ویرایش اطلاعات | FoodLand 🍔</title>
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
@@ -12,6 +13,10 @@
     <h2>ویرایش حساب کاربری</h2>
 
     <form method="POST" class="edit-form">
+     <!-- دکمه Back -->
+    <a href="{% url 'home:home' %}" class="back-btn">
+        <img src="{% static 'assets/images/back icon.png' %}" alt="بازگشت">
+    </a>
         {% csrf_token %}
 
         <!-- پیام موفقیت -->

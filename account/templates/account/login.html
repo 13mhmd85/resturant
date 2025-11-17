@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
+    {% include 'includes/header_link.html' %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ورود به فودلند 🍔</title>
@@ -32,6 +33,9 @@
   <div class="card p-4 shadow-lg border-0 reservation-section">
     <h2 class="text-center mb-4">ورود به فودلند 🍔</h2>
     <form method="POST" action="">
+         <a href="{% url 'home:home' %}" class="back-btn">
+        <img src="{% static 'assets/images/back icon.png' %}" alt="بازگشت">
+    </a>
       {% csrf_token %}
       <div class="mb-3">
         <label for="username" class="form-label fw-bold">نام کاربری</label>
