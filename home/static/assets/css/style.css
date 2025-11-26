@@ -360,6 +360,120 @@ footer p {
     object-fit: contain;
 }
 
+/* ======= RESERVATION FORM (UPDATED) ======= */
+.reservation-card {
+    background: var(--bg-secondary);
+    padding: 2.5rem;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    position: relative;
+    border: 2px solid var(--accent);
+}
 
+.reservation-card h2 {
+    font-weight: 800;
+    text-align: center;
+    color: var(--accent);
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
 
+/* Labels */
+.reservation-card label {
+    color: var(--text-light);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
 
+/* Inputs & Select */
+.reservation-card input,
+.reservation-card select {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.reservation-card input:focus,
+.reservation-card select:focus {
+    box-shadow: 0 0 12px var(--accent);
+    border-color: var(--accent);
+}
+
+/* Icons */
+.reservation-card .input-group-text {
+    background-color: var(--accent);
+    color: var(--bg-dark);
+    border: none;
+}
+
+/* Button */
+.reservation-card button {
+    background-color: var(--accent);
+    color: var(--bg-dark);
+    border: none;
+    font-weight: 800;
+    padding: 0.9rem;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.reservation-card button:hover {
+    background-color: var(--accent-hover);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Datepicker styles */
+.persian-datepicker {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-light) !important;
+}
+
+.persian-datepicker .day,
+.persian-datepicker .month,
+.persian-datepicker .year {
+    color: var(--text-light) !important;
+}
+
+.persian-datepicker .selected {
+    background-color: var(--accent) !important;
+    color: var(--bg-dark) !important;
+}
+
+/* Back button */
+.back-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    z-index: 10;
+}
+.back-btn img {
+    width: 100%;
+    height: 100%;
+}
+
+/* فوتر همیشه پایین */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.page-wrapper {
+    min-height: calc(100vh - 620px);  /* 120px = ارتفاع فوترت */
+    display: block;
+}
+  #reserv .card:hover {
+      transform: translateY(-5px);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  #reserv h5, #reserv p {
+      line-height: 1.5;
+  }

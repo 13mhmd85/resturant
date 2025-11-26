@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>صفحه شخصی | FoodLand 🍔</title>
 
+
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -67,6 +68,29 @@
     <a href="{% url 'account:edit' %}" class="add-to-cart-btn">ویرایش اطلاعات</a>
   </div>
 </section>
+<!-- ======= USER RESERVATIONS ======= -->
+<div class="container my-5">
+  <h2 class="mb-4 text-center" style="color: var(--accent); font-weight:800;">رزروهای من 📅</h2>
+
+  {% if user_reservations %}
+    <div id="reserv" class="row justify-content-center">
+      {% for reserv in user_reservations %}
+      <div class="col-md-6 mb-4">
+        <div class="card p-3" style="border-radius:15px; background-color: var(--bg-secondary); color: var(--text-light); text-align: right; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.3s ease;">
+          <h5 class="mb-2" style="color: var(--accent); font-weight:600;">رزرو برای: {{ reserv.full_name }}</h5>
+          <p class="mb-1"><strong>تاریخ:</strong> {{ reserv.date|date:"Y/m/d" }}</p>
+          <p class="mb-1"><strong>تعداد افراد:</strong> {{ reserv.tedad }} نفر</p>
+          <p class="mb-1"><strong>شماره تماس:</strong> {{ reserv.phone }}</p>
+          <p class="mb-0"><strong>ایمیل:</strong> {{ reserv.email }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center" style="color: var(--text-light); font-weight:500;">هیچ رزروی ثبت نشده است.</p>
+  {% endif %}
+</div>
+
 
 <!-- ======= USER ACTION CARDS ======= -->
 <div class="container my-5 text-center">

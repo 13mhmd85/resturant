@@ -5,6 +5,7 @@ from pyexpat.errors import messages
 
 from . import models
 from django.contrib.auth.models import User
+from reservation.models import Reservation
 
 
 
@@ -102,6 +103,9 @@ def logout_view(request):
 
 def user_page(request):
     if request.user.is_authenticated:
-        return render(request, 'account/userpage.html')
+        user_reservations = Reservation.objects.filter(user=request.user).order_by('-date')
+       
+        return render(request, 'account/userpage.html', {'user_reservations': user_reservations})
+
     else:
         return redirect('/login')

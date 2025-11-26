@@ -13,7 +13,7 @@ class Reservation(models.Model):
     phone = models.IntegerField()
     tedad = models.IntegerField()
     created=models.DateTimeField(auto_now_add=True,blank=True,null=True)
-    date = jmodels.jDateField(null=True ,blank=True)
+    date = models.DateField(null=True, blank=True)
     
     def __str__(self):
-        return f"{self.full_name} - {self.tedad} - {self.date} - {self.phone}"
+        return f"{self.user} - {self.full_name} - {self.tedad} - {self.date} - {self.phone}"
