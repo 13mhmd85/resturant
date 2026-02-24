@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رزرو میز | FoodLand 🍽️</title>
+    <title>Table Reservation | FoodLand 🍽️</title>
     {% include 'includes/header_link.html' %}
     <!-- COLORS -->
     <style>
@@ -40,10 +40,10 @@
 
         <!-- Back button -->
         <a href="{% url 'home:home' %}" class="back-btn">
-            <img src="{% static 'assets/images/back icon.png' %}" alt="back">
+            <img src="{% static 'assets/images/back icon.png' %}" alt="Back">
         </a>
 
-        <h2>رزرو میز 🍽️</h2>
+        <h2>Table Reservation 🍽️</h2>
 
         <form method="post">
             {% csrf_token %}
@@ -52,17 +52,17 @@
 
                 <!-- Name -->
                 <div class="col-md-6">
-                    <label>نام و نام خانوادگی</label>
+                    <label>Full Name</label>
                     <div class="input-group">
                         <span class="input-group-text">👤</span>
                         <input required name="full_name" type="text" class="form-control"
-                               placeholder="نام خودرا وارد کنید">
+                               placeholder="Enter your full name">
                     </div>
                 </div>
 
                 <!-- Phone -->
                 <div class="col-md-6">
-                    <label>شماره تماس</label>
+                    <label>Phone Number</label>
                     <div class="input-group">
                         <span class="input-group-text">📞</span>
                         <input required maxlength="11" name="phone_number" type="text"
@@ -72,7 +72,7 @@
 
                 <!-- Email -->
                 <div class="col-md-6">
-                    <label>ایمیل</label>
+                    <label>Email</label>
                     <div class="input-group">
                         <span class="input-group-text">✉️</span>
                         <input required name="email" type="email" class="form-control" placeholder="demo@gmail.com">
@@ -81,35 +81,33 @@
 
                 <!-- Persons -->
                 <div class="col-md-6">
-                    <label>تعداد افراد</label>
+                    <label>Number of Guests</label>
                     <div class="input-group">
                         <span class="input-group-text">👥</span>
                         <select name="tedad" class="form-select">
-                            <option value="1" selected>نفر 1</option>
-                            <option value="2">2 نفر</option>
-                            <option value="3">3 نفر</option>
-                            <option value="4">4 نفر</option>
-                            <option value="5">5 نفر</option>
+                            <option value="1" selected>1 Person</option>
+                            <option value="2">2 Persons</option>
+                            <option value="3">3 Persons</option>
+                            <option value="4">4 Persons</option>
+                            <option value="5">5 Persons</option>
                         </select>
                     </div>
                 </div>
 
                 <!-- Persian Datepicker -->
                 <div class="col-md-6">
-                    <label>تاریخ رزرو</label>
+                    <label>Reservation Date</label>
                     <div class="input-group">
                         <span class="input-group-text">📅</span>
 
-                        <!-- شمسی -->
-                        <input required type="text" id="date_fa" name="date_fa" class="form-control" placeholder="انتخاب تاریخ">
-
-
+                        <!-- Persian Calendar -->
+                        <input required type="text" id="date_fa" name="date_fa" class="form-control" placeholder="Select Date">
 
                     </div>
                 </div>
 
                 <div class="col-md-6 d-flex align-items-end">
-                    <button type="submit" class="btn w-100">رزرو کنید ✅</button>
+                    <button type="submit" class="btn w-100">Reserve ✅</button>
                 </div>
             </div>
 
@@ -161,7 +159,7 @@
         initialValue: false
     });
 
-    // جلوگیری از ارسال عدد فارسی در تاریخ
+    // Prevent submitting Persian numbers in the date
     $("form").on("submit", function () {
         let dateInput = $("#date_fa").val();
         const persianNumbers = "۰۱۲۳۴۵۶۷۸۹";
@@ -172,7 +170,6 @@
         $("#date_fa").val(dateInput);
     });
 });
-
 </script>
 
 </body>

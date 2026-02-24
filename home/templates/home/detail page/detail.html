@@ -1,23 +1,113 @@
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{#{% block content %}#}
+{##}
+{#<div class="hero" id="card_icon" style="border-color: #393E46;border-style: none">#}
+{#    <a href="{% url 'home:home' %}">#}
+{#    <img href="{% url 'home:home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">#}
+{#    <h5>FoodLand 🍔</h5>#}
+{#    </a>#}
+{#</div>#}
+{##}
+{#<!-- DETAIL SECTION -->#}
+{#<section class="detail-section">#}
+{##}
+{#    <img src="{{ product.image.url }}" alt="{{ product.name }}">#}
+{#    <h1>{{ product.name }}</h1>#}
+{#    <p>{{ product.description }}</p>#}
+{#    <div class="price">{{ product.price }} Toman</div>#}
+{#    <button class="add-to-cart-btn">Add to Cart 🛒</button>#}
+{##}
+{#</section>#}
+{##}
+{#{% endblock %}#}
+
+
+
+
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
 
 <div class="hero" id="card_icon" style="border-color: #393E46;border-style: none">
     <a href="{% url 'home:home' %}">
-    <img href="{% url 'home:home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
-    <h5>FoodLand 🍔</h5>
+        <img href="{% url 'home:home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
+        <h5>FoodLand 🍔</h5>
     </a>
 </div>
 
 <!-- DETAIL SECTION -->
-<section class="detail-section">
+<section class="detail-section" style="padding: 20px; text-align: center;">
 
-    <img src="{{ product.image.url }}" alt="{{ product.name }}">
-    <h1>{{ product.name }}</h1>
-    <p>{{ product.description }}</p>
-    <div class="price">{{ product.price }} تومان</div>
-    <button class="add-to-cart-btn">اضافه کردن به سبد خرید 🛒</button>
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 250px; border-radius: 15px; margin-bottom: 20px;">
 
+    <h1 style="color: #00ADB5; margin-bottom: 10px;">{{ product.name }}</h1>
+    <p style="color: #EEEEEE; max-width: 600px; margin: 10px auto;">{{ product.description }}</p>
+    <div class="price" style="color: #00ADB5; font-size: 22px; margin: 10px 0;">{{ product.price }} Toman</div>
+    <button class="add-to-cart-btn" style="padding: 12px 25px; border-radius: 12px; background:#00ADB5; color: #fff; border:none; cursor:pointer; margin-bottom: 40px;">Add to Cart 🛒</button>
+
+</section>
+
+<!-- COMMENTS SECTION -->
+<section class="comments-section" style="padding: 25px; background:#1B2A3A; border-radius: 20px; width: 90%; max-width: 850px; margin: auto; margin-bottom: 60px;">
+
+    <h2 style="color: #00ADB5; margin-bottom: 20px; text-align:center;">User Comments 🗨️</h2>
+
+    <!-- SAMPLE COMMENT -->
+    {% for comment in product.comments.all %}
+        {% if comment.parent == none %}
+            {% if comment.situation %}
+    <div class="comment-box" style="display:flex; align-items:flex-start; gap:15px; background:#3A4750; padding:15px; border-radius:15px; margin-bottom:20px;">
+        <img src="{% static 'assets/images/icon human.png' %}" style="width:55px; height:55px; border-radius: 50%; object-fit:cover;">
+
+    <div>
+        <h4 style="color:#00ADB5; margin-bottom:5px;">{{ comment.user.get_full_name }}</h4>
+        <p style="color:#EEEEEE;">{{ comment.text }}</p>
+
+        <!-- COMMENT DATE -->
+        <span style="color:#BBBBBB; font-size:13px;">
+            Posted on: {{ comment.created_at }}
+        </span>
+    </div>
+</div>
+
+    <!-- ADMIN REPLY -->
+        {% for reply in comment.replies.all %}
+    <div class="comment-box admin-reply" style="display:flex; align-items:flex-start; gap:15px; background:#2C394B; padding:15px; border-radius:15px; margin-left:50px; border-left:4px solid #00ADB5; margin-bottom:20px;">
+        <img src="{% static 'assets/images/icon human.png' %}" style="width:50px; height:50px; border-radius: 50%; object-fit:cover;">
+        <div>
+            <h4 style="color:#00ADB5; margin-bottom:5px;">{{ reply.user.get_full_name }}</h4>
+            <p style="color:#EEEEEE;">{{ reply.text }}</p>
+                <span style="color:#BBBBBB; font-size:13px;">
+                Posted on: {{ comment.created_at }}
+                </span>
+        </div>
+    </div>
+            {% endfor %}
+            {% endif %}
+        {% endif %}
+
+{% endfor %}
+    <!-- ADD COMMENT FORM -->
+{% if request.user.is_authenticated %}
+    <div class="add-comment" style="margin-top:30px;">
+        <h3 style="color:#00ADB5; margin-bottom:15px;">Add a New Comment ✍️</h3>
+
+        <form method="POST" style="display:flex; flex-direction:column; gap:15px;">
+            {% csrf_token %}
+
+
+            <textarea name="text" rows="4" placeholder="Your Comment..." style="padding:12px; border-radius:10px; background:#222831; color:#fff; border:none;"></textarea>
+
+            <button type="submit" href="{{ product.get_absolute_url }}" style="padding:12px; background:#00ADB5; border:none; border-radius:10px; color:#fff; cursor:pointer; font-size:16px;">Submit 🚀</button>
+        </form>
+    </div>
+    {% else %}
+    <div class="container text-center" style="margin-top:30px;">
+        <h3 style="color:#00ADB5; margin-bottom:15px;">Add a New Comment ✍️</h3>
+    <a href="{% url 'account:login' %}"><p>for add comment please sign in your account🙏 </p></a>
+    </div>
+{% endif %}
 </section>
 
 {% endblock %}

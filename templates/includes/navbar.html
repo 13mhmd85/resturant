@@ -1,38 +1,31 @@
 {% load static %}
 <a class="navbar-brand" href="{% url 'home:home' %}">FoodLand 🍔</a>
 
-    <div class="ms-auto user-menu" >
-        {% if request.user.is_authenticated %}
-
-
-            <div id="user-info" >
-            <img style="width: 55px;height: auto" alt="login icon" src="{% static 'assets/images/icon human.png' %}">
+<div class="ms-auto user-menu">
+    {% if request.user.is_authenticated %}
+        <div id="user-info">
+            <img style="width: 55px; height: auto;" alt="user icon" src="{% static 'assets/images/icon human.png' %}">
             <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
             <div class="dropdown">
-
-                <ul id="info-user"  class=" dropdown-menu"
-                    aria-labelledby="dropdownMenu2">
+                <ul id="info-user" class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <li style="color: white">
-                        <a  href="{% url 'account:user_page' %}">  <button class="dropdown-item" type="button">صفحه شخصی</button></a>
+                        <a href="{% url 'account:user_page' %}">
+                            <button class="dropdown-item" type="button">Profile Page</button>
+                        </a>
                     </li>
                     <li style="color: white">
-                        <a  href="{% url 'account:logout' %}"><button class="dropdown-item"  type="button">خروج از حساب</button></a>
+                        <a href="{% url 'account:logout' %}">
+                            <button class="dropdown-item" type="button">Logout</button>
+                        </a>
                     </li>
-
                 </ul>
             </div>
-            </div>
-
-        {% else %}
-
-        <img style="width: 55px;height: auto" alt="login icon" src="{% static 'assets/images/login.png' %}">
-        <ul  class="dropdown-menu position-absolute">
-            <li><a class="dropdown-item" href="{% url 'account:register' %}">ثبت نام</a></li>
-            <li><a class="dropdown-item" href="{% url 'account:login' %}">ورود</a></li>
+        </div>
+    {% else %}
+        <img style="width: 55px; height: auto;" alt="login icon" src="{% static 'assets/images/login.png' %}">
+        <ul class="dropdown-menu position-absolute">
+            <li><a class="dropdown-item" href="{% url 'account:register' %}">Register</a></li>
+            <li><a class="dropdown-item" href="{% url 'account:login' %}">Sign In</a></li>
         </ul>
-
-        {% endif %}
-    </div>
-
-
-
+    {% endif %}
+</div>

@@ -1,12 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
     {% include 'includes/header_link.html' %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>صفحه شخصی | FoodLand 🍔</title>
-
+<title>Profile Page | FoodLand 🍔</title>
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
@@ -31,8 +30,8 @@
 
       <div class="dropdown">
         <ul style="background-color:#222831;margin-top:24px" class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <li><a href="{% url 'home:home' %}" class="dropdown-item">خانه</a></li>
-          <li><a href="{% url 'account:logout' %}" class="dropdown-item">خروج از حساب</a></li>
+          <li><a href="{% url 'home:home' %}" class="dropdown-item">Home</a></li>
+          <li><a href="{% url 'account:logout' %}" class="dropdown-item">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -53,60 +52,60 @@
     </a>
 </div>
   <h1> {{ request.user.first_name }}👋!</h1>
-  <p>به صفحه شخصی خودت خوش اومدی. اینجا می‌تونی اطلاعات حساب، سفارش‌ها و تنظیماتت رو ببینی.</p>
+  <p>Welcome to your profile page. Here you can see your account info, orders, and settings.</p>
 </section>
 
 <!-- ======= USER DETAIL SECTION ======= -->
 <section class="detail-section text-center">
   <img src="{% static 'assets/images/icon human.png' %}" alt="User Avatar" style="width:150px;">
   <h1>{{ request.user.first_name }} {{ request.user.last_name }}</h1>
-  <p><strong>نام کاربری:</strong> {{ request.user.username }}</p>
-  <p><strong>ایمیل:</strong> {{ request.user.email }}</p>
-  <p><strong>تاریخ عضویت:</strong> {{ request.user.date_joined|date:"Y/m/d" }}</p>
+  <p><strong>Username:</strong> {{ request.user.username }}</p>
+  <p><strong>Email:</strong> {{ request.user.email }}</p>
+  <p><strong>Date Joined:</strong> {{ request.user.date_joined|date:"Y/m/d" }}</p>
 
   <div class="mt-4">
-    <a href="{% url 'account:edit' %}" class="add-to-cart-btn">ویرایش اطلاعات</a>
+    <a href="{% url 'account:edit' %}" class="add-to-cart-btn">Edit Profile</a>
   </div>
 </section>
+
 <!-- ======= USER RESERVATIONS ======= -->
 <div class="container my-5">
-  <h2 class="mb-4 text-center" style="color: var(--accent); font-weight:800;">رزروهای من 📅</h2>
+  <h2 class="mb-4 text-center" style="color: var(--accent); font-weight:800;">My Reservations 📅</h2>
 
   {% if user_reservations %}
     <div id="reserv" class="row justify-content-center">
       {% for reserv in user_reservations %}
       <div class="col-md-6 mb-4">
         <div class="card p-3" style="border-radius:15px; background-color: var(--bg-secondary); color: var(--text-light); text-align: right; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.3s ease;">
-          <h5 class="mb-2" style="color: var(--accent); font-weight:600;">رزرو برای: {{ reserv.full_name }}</h5>
-          <p class="mb-1"><strong>تاریخ:</strong> {{ reserv.date|date:"Y/m/d" }}</p>
-          <p class="mb-1"><strong>تعداد افراد:</strong> {{ reserv.tedad }} نفر</p>
-          <p class="mb-1"><strong>شماره تماس:</strong> {{ reserv.phone }}</p>
-          <p class="mb-0"><strong>ایمیل:</strong> {{ reserv.email }}</p>
+          <h5 class="mb-2" style="color: var(--accent); font-weight:600;">Reservation for: {{ reserv.full_name }}</h5>
+          <p class="mb-1"><strong>Date:</strong> {{ reserv.date|date:"Y/m/d" }}</p>
+          <p class="mb-1"><strong>Number of people:</strong> {{ reserv.tedad }}</p>
+          <p class="mb-1"><strong>Phone:</strong> {{ reserv.phone }}</p>
+          <p class="mb-0"><strong>Email:</strong> {{ reserv.email }}</p>
         </div>
       </div>
       {% endfor %}
     </div>
   {% else %}
-    <p class="text-center" style="color: var(--text-light); font-weight:500;">هیچ رزروی ثبت نشده است.</p>
+    <p class="text-center" style="color: var(--text-light); font-weight:500;">No reservations found.</p>
   {% endif %}
 </div>
 
-
 <!-- ======= USER ACTION CARDS ======= -->
 <div class="container my-5 text-center">
-  <h2 class="mb-4" style="color: var(--accent); font-weight:800;">دسترسی سریع ⚡</h2>
+  <h2 class="mb-4" style="color: var(--accent); font-weight:800;">Quick Access ⚡</h2>
   <div class="row justify-content-center">
     <div class="col-md-3">
       <div style="height: 130px;width: auto" id="card_icon">
         <img src="{% static 'assets/images/order.png' %}" alt="Orders">
-        <h5>سفارش‌های من</h5>
+        <h5>My Orders</h5>
       </div>
     </div>
     <div  class="col-md-3">
         <a href="{% url 'account:logout' %}">
       <div style="height: 130px;width: auto" id="card_icon">
         <img src="{% static 'assets/images/logout.png' %}" alt="Logout">
-        <h5>خروج از حساب</h5></a>
+        <h5>Logout</h5></a>
       </div>
     </div>
   </div>
@@ -117,19 +116,16 @@
     <p>Backend Dev: Mohammad Mayyahi 👨‍💻</p>
     <div class="footer-social my-2">
         {% for footer in footer %}
-
-        <a href="{{ footer.whatsapp }}"><i class="fa fa-whatsapp">whatsapp</i></a>
-        <a href="{{footer.telegram}}"><i class="fa fa-telegram">telegram</i></a>
-        <a href="{{footer.instagram}}"><i class="fa fa-instagram">instagram</i></a>
+        <a href="{{ footer.whatsapp }}"><i class="fa fa-whatsapp">WhatsApp</i></a>
+        <a href="{{footer.telegram}}"><i class="fa fa-telegram">Telegram</i></a>
+        <a href="{{footer.instagram}}"><i class="fa fa-instagram">Instagram</i></a>
         {% endfor %}
-
-
     </div>
     <div class="footer-social my-2">
         {% for footer in footer %}
-        <p> {{ footer.email }} : ایمیل ما</p>
-        <p>آدرس ما: {{ footer.address }}</p>
-        <p>شماره تماس: {{ footer.phone }}</p>
+        <p>Email: {{ footer.email }}</p>
+        <p>Address: {{ footer.address }}</p>
+        <p>Phone: {{ footer.phone }}</p>
         {% endfor %}
     </div>
 

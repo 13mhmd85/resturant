@@ -8,15 +8,15 @@
 :root {
   --bg-dark: #1B2A3A;        /* پایه تیره‌تر و جدی‌تر */
   --bg-secondary: #3A5366;   /* لایه دوم تیره‌تر برای عمق بیشتر */
-  --accent: #D8E9F0;
+  --accent: #00b4ff;
     --accent-hover:#660B05;/* رنگ برجسته تیره‌تر ولی هنوز مشخص */
-  --text-light: #C4D4DD;     /* متن روشن و نرم برای خوانایی */
+  --text-light: #ecf9f8;     /* متن روشن و نرم برای خوانایی */
 }
 
 
 /* 🌍 بدنه و فونت کلی */
 body {
-    font-family: 'Vazir', sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: var(--bg-dark);
     color: var(--text-light);
 }

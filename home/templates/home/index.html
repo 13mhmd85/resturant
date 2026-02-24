@@ -1,93 +1,26 @@
-{#{% extends 'base.html' %}#}
-{#{% load static %}#}
-{#{% block content %}#}
-{#<!-- HERO -->#}
-{#<div class="hero" id="card_icon" style="border-color: #393E46;border-style: none">#}
-{#    <a href="{% url 'home:home' %}">#}
-{#    <img href="{% url 'home:home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">#}
-{#    <h5>FoodLand 🍔</h5>#}
-{#    </a>#}
-{#</div>#}
-{##}
-{#<section class="hero">#}
-{#    <br>#}
-{#    <h1>🍔🍕🥤به فودلند خوش آمدید </h1>#}
-{#    <p>لذت واقعی غذاهای خوشمزه با کیفیت بالا. سفارش آنلاین، رزرو میز و تجربه‌ای متفاوت از رستوران‌گردی را با فودلند تجربه کنید.</p>#}
-{#</section>#}
-{##}
-{#<!-- FOOD CARDS -->#}
-{#<section class="container my-5">#}
-{#       <div class="row g-4">#}
-{#    {% for product in products %}#}
-{#        <div class="col-md-4">#}
-{#            <a href="{{ product.get_absolute_url }}">#}
-{#            <div class="food-card" >#}
-{#            {% if product.image %}#}
-{#                <img   {% if product.productid == 1 %} style="transform: rotate(15deg);" {% endif %} src="{{ product.image.url }}" alt="{{ product.name }}">#}
-{#            {% endif %}#}
-{#                <div class="food-card-body">#}
-{#                    <h5>{{ product.name }}</h5>#}
-{#                    <h6 style="text-align: center;color:  var(--text-light)">{{ product.description }}</h6>#}
-{#                    <div class="price">{{ product.price }} تومان</div>#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{#            </a>#}
-{#        </div>#}
-{#    {% endfor %}#}
-{#</div>#}
-{##}
-{#</section>#}
-{#    <div class="text-center text ">#}
-{#    <span>جدید ترین غذا مجموعه فودلند</span>#}
-{#    {% for recent in recent %}#}
-{#        <br>#}
-{#    <span>نام:{{ recent.name }}</span>#}
-{#    {% endfor %}#}
-{#    </div>#}
-{##}
-{#<!-- RESERVATION BUTTON -->#}
-{#<section class="container text-center my-5">#}
-{#  <a href="{% url 'reservation:reserv' %}" class="btn fw-bold"#}
-{#     style="background: var(--bg-secondary); color: var(--text-light); font-size: 1.2rem; border-radius: 15px; padding: 12px 30px; transition: 0.3s;">#}
-{#     رزرو میز 🍽️#}
-{#  </a>#}
-{#</section>#}
-{##}
-{#{% endblock %}#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-
-
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
 <!-- HERO -->
-<div class="hero" id="card_icon" style="border-color: #393E46;border-style: none">
+<div class="hero" id="card_icon" style="border-color: #393E46; border-style: none;">
     <a href="{% url 'home:home' %}">
-    <img href="{% url 'home:home' %}" src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
-    <h5>FoodLand 🍔</h5>
+        <img src="{% static 'assets/images/icon.png' %}" alt="FoodLand">
+        <h5>FoodLand 🍔</h5>
     </a>
 </div>
 
 <section class="hero">
     <br>
-    <h1>🍔🍕🥤به فودلند خوش آمدید </h1>
-    <p>لذت واقعی غذاهای خوشمزه با کیفیت بالا. سفارش آنلاین، رزرو میز و تجربه‌ای متفاوت از رستوران‌گردی را با فودلند تجربه کنید.</p>
+    <h1> Welcome to FoodLand 🍔🍕🥤</h1>
+    <p>Enjoy the true taste of high-quality delicious food. Experience online ordering, table reservations, and a unique restaurant experience with FoodLand.</p>
 </section>
-<!-- MENU ABOVE PRODUCTS -->
+
+<!-- CATEGORY MENU -->
 <section class="container my-4">
-    <div class="products-menu" style="background: var(--bg-secondary); border-radius: 10px; padding: 10px; text-align:center; margin-bottom:20px;">
-        <h3 style="color: var(--text-light); margin:0 10px; text-decoration:none; font-weight:bold;">دسته بندی</h3>
+    <div class="products-menu"
+         style="background: var(--bg-secondary); border-radius: 10px; padding: 10px; text-align:center; margin-bottom:20px;">
+        <h3 style="color: var(--text-light); margin:0 10px; font-weight:bold;">Categories</h3>
         <br>
         {% for tag in tag %}
             <a href="tag/{{ tag.slug }}"
@@ -98,22 +31,22 @@
     </div>
 </section>
 
-<!-- FOOD CARDS -->
+<!-- FOOD CARDS + PAGINATION -->
 <section class="container my-5">
     <div class="row g-4">
-        {% for product in products %}
+        {% for product in page_obj %}
         <div class="col-md-4">
             <a href="{{ product.get_absolute_url }}">
                 <div class="food-card">
                     {% if product.image %}
-                        <img {% if product.productid == 1 %} style="transform: rotate(15deg);" {% endif %} src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
                     {% endif %}
+
                     <div class="food-card-body">
                         <h5>{{ product.name }}</h5>
-                        <h6 style="text-align: center;color:  var(--text-light)">{{ product.description }}</h6>
-                        <div class="price">{{ product.price }} تومان</div>
+                        <h6 style="text-align:center; color: var(--text-light);">{{ product.description }}</h6>
+                        <div class="price">{{ product.price }} Toman</div>
 
-                        <!-- PRODUCT TAGS -->
                         {% if product.tag.all %}
                         <div class="product-tags mt-2" style="text-align:center;">
                             {% for tag in product.tag.all %}
@@ -127,34 +60,53 @@
         </div>
         {% endfor %}
     </div>
+
+    <!-- PAGINATION BUTTONS -->
+    <div class="pagination-container text-center mt-4">
+
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}"
+           class="btn fw-bold"
+           style="background: var(--bg-secondary); color: var(--text-light);
+                  border-radius:15px; padding:8px 20px; margin:5px;">
+            ⬅ Previous
+        </a>
+        {% endif %}
+
+        <span class="btn fw-bold"
+              style="background: var(--bg-dark); color: var(--text-light);
+                     border-radius:15px; padding:8px 20px; margin:5px;">
+            Page {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}"
+           class="btn fw-bold"
+           style="background: var(--bg-secondary); color: var(--text-light);
+                  border-radius:15px; padding:8px 20px; margin:5px;">
+            Next ➡
+        </a>
+        {% endif %}
+
+    </div>
 </section>
 
-</section>
-    <div class="text-center text ">
-    <span>جدید ترین غذا مجموعه فودلند</span>
+<!-- NEWEST DISHES -->
+<div class="text-center text my-4">
+    <span>The newest dishes at FoodLand</span>
     {% for recent in recent %}
         <br>
-    <span>نام:{{ recent.name }}</span>
+        <span>Name: {{ recent.name }}</span>
     {% endfor %}
-    </div>
+</div>
 
 <!-- RESERVATION BUTTON -->
 <section class="container text-center my-5">
-  <a href="{% url 'reservation:reserv' %}" class="btn fw-bold"
-     style="background: var(--bg-secondary); color: var(--text-light); font-size: 1.2rem; border-radius: 15px; padding: 12px 30px; transition: 0.3s;">
-     رزرو میز 🍽️
-  </a>
+    <a href="{% url 'reservation:reserv' %}" class="btn fw-bold"
+       style="background: var(--bg-secondary); color: var(--text-light);
+              font-size:1.2rem; border-radius:15px; padding:12px 30px; transition:0.3s;">
+        Reserve a Table 🍽️
+    </a>
 </section>
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-

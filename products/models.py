@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -24,5 +25,20 @@ class Food(models.Model):
         
     def get_absolute_url(self):
         return reverse('home:detail',args=[self.slug])
+    
+    
+class comment(models.Model):
+    Food = models.ForeignKey(Food, on_delete=models.CASCADE,related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='comments')
+    parent = models.ForeignKey('self',on_delete=models.CASCADE,null=True,blank=True,related_name='replies')
+    
+    
+    
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True,blank=True,null=True)
+    situation = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return f"{self.user} - {self.Food.name} - {self.text[:40]}"
 
     

@@ -56,15 +56,24 @@ def register(request):
 
 def edit(request):
     if request.user.is_authenticated:
+        context = {'error':[]}
         if request.method == 'POST':
-            user = request.user
+            user=request.user
+            user.username = request.POST.get('username')
             user.first_name = request.POST.get('first_name')or ''
             user.last_name = request.POST.get('last_name')or ''
             user.email = request.POST.get('email')
+            # if request.POST.get('password1') != request.POST.get('password2'):
+            #     context["error"].append('Passwords do not match')
+            #     return render(request, 'account/edit_profile.html', context)
+            # else:
+            #     user.password=request.POST.get('password1')
+            #     
+                
             user.save()
             return redirect('account:user_page') 
 
-        return render(request, 'account/edit_profile.html')
+        return render(request, 'account/edit_profile.html', context)
     else:
         return redirect('account:login')
 

@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from home.models import category
+from . import models
+from home.models import Footer
 
 # Create your views here.
 def tag_detail(request, slug):
@@ -11,3 +13,4 @@ def tag_detail(request, slug):
     print(foods)
     all_tags = category.objects.all() 
     return render(request,'tag_detail.html',{"foods":foods,"tag":tag,"all_tags":all_tags})
+
