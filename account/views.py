@@ -30,7 +30,7 @@ def register(request):
     context = {'error':[]}
     errors = False
     if request.method == 'POST':
-        first_name =request.POST.get('first_name')
+        fullname =request.POST.get('fullname')
         email =request.POST.get('email')
         username =request.POST.get('username')
         password1 =request.POST.get('password1')
@@ -47,7 +47,7 @@ def register(request):
         if errors == True:
             return render(request, 'account/register.html', context)
         
-        user = User.objects.create_user(first_name=first_name,username=username, email=email, password=password1)
+        user = User.objects.create_user(first_name=fullname,username=username, email=email, password=password1)
         
         login(request, user)
         return redirect('/')
